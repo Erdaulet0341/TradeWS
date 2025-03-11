@@ -63,9 +63,19 @@ pip install -r requirements.txt
 ```
 SECRET_KEY=your_secret_key
 DEBUG=True
-ALLOWED_HOSTS=*
-DATABASE_URL=postgres://user:password@localhost:5432/tradews
-REDIS_URL=redis://localhost:6379/0
+BASE_URL=http://127.0.0.1:8000/
+TIME_INTERVAL=60
+
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=your_db_name
+POSTGRES_USER=your_postgres_user
+POSTGRES_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+
+BINANCE_WS_URL=wss://stream.binance.com:9443/ws
+REDIS_HOST=localhost
+REDIS_PORT=6379
 ```
 
 ### **5 Настройка базы данных**  
