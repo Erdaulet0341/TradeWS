@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Live Updates</title>
+</head>
+<body>
+    <h1>WebSocket Live Trade Updates</h1>
+    <div>
+        <p>Incoming Messages:</p>
+        <ul id="messages"></ul>
+    </div>
+
+    <script>
+        function connectWebSocket() {
+            const socket = new WebSocket('ws://localhost:8000/ws/trade/');
+
+            socket.onopen = function () {
+                console.log('✅ WebSocket connected.');
+                socket.send(JSON.stringify({ symbol: 'BTCUSDT' })); // set initial symbol
+            };
+
+            socket.onmessage = function (event) {
+                console.log('📩 New message:', event.data);
+                const message = JSON.parse(event.data);
+
+                const messagesList = document.getElementById('messages');
+                const listItem = document.createElement('li');
+                listItem.textContent = `Symbol: ${message.symbol}, Open: ${message.open_price}, Close: ${message.close_price}, High: ${message.high_price}, Low: ${message.low_price}, Volume: ${message.volume}`;
+                messagesList.appendChild(listItem);
+            };
+
+            socket.onclose = function (event) {
+                console.warn('⚠️ WebSocket closed. Reconnecting in 3 seconds...');
+                setTimeout(connectWebSocket, 3000);  // Auto-reconnect
+            };
+
+            socket.onerror = function (error) {
+                console.error('❌ WebSocket error:', error);
+            };
+        }
+        connectWebSocket();
+    </script>
+</body>
+</html>

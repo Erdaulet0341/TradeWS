@@ -5,6 +5,7 @@ from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
 from TradeWS.variables import get_env_variable
+from api import views
 from api.views import TickerHistoryViewSet
 
 schema_view = get_schema_view(
@@ -23,7 +24,9 @@ router = DefaultRouter()
 router.register(r'trades', TickerHistoryViewSet, basename='trade')
 
 urlpatterns = [
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # for Swagger UI
 
     path('', include(router.urls)),
+
+    path('websocket-test/', views.websocket_test, name='websocket_test')  # for testing WebSocket
 ]
