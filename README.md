@@ -3,6 +3,13 @@
 
 **TradeWS** — это Django-приложение для получения данных о сделках с Binance WebSocket API, их хранения в PostgreSQL и предоставления данных клиентам через REST API и WebSocket-сервер на Django Channels.  
 
+## **Видео демонстрация** 
+
+
+https://github.com/user-attachments/assets/1be0e383-e473-46fd-b0b8-099cda784cc5
+
+
+
 ## **Функциональность**  
 ✔ **Получение данных в реальном времени** через WebSocket Binance.  
 ✔ **Сохранение данных в Redis** для временного хранения.  
@@ -35,7 +42,7 @@
 
 ### **1 Клонирование репозитория**  
 ```sh
-git clone https://github.com/your_username/TradeWS.git
+git clone https://github.com/Erdaulet0341/TradeWS.git
 cd TradeWS
 ```
 
